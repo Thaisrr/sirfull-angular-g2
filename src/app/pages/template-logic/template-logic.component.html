@@ -1,0 +1,92 @@
+<hr>
+
+<h2>Logique de template</h2>
+
+
+<h3>Affichage conditionnel : </h3>
+
+<!-- pour un texte simple et court -->
+<p>[1] Vous êtes {{ isLogged? 'connecté(e)s' : 'pas connecté(e)s' }}</p>
+
+
+<!-- Pour une structure + complexe -->
+
+<p *ngIf="isLogged">[2] Vous êtes connecté(e)s</p>
+
+<p *ngIf="!isLogged">[2] Vous n'êtes pas connecté(e)s</p>
+
+
+<button (click)="login()">{{ isLogged? 'Déconnexion' : 'Connexion' }}'</button>
+
+
+
+<h4>If Else</h4>
+
+<p *ngIf="isLogged; else elseTemplate">ça n'a pas changé, vous êtes toujours loggé(e)</p>
+
+<ng-template #elseTemplate>
+  <p>Il va falloir penser à se connecter</p>
+</ng-template>
+
+
+
+<h4 #title>Syntaxe "complexe" : à ne pas utiliser</h4>
+
+
+<ng-template [ngIf]="isLogged" [ngIfElse]="loggedOutTemplate">
+  <p>Hello There !</p>
+</ng-template>
+
+
+<ng-template #loggedOutTemplate>
+  <p>General Kenobi</p>
+</ng-template>
+
+<button (click)="changeTitle()">Modifier le titre</button>
+
+
+<h4>Le Switch</h4>
+
+<ng-container [ngSwitch]="role">
+  <p *ngSwitchCase=" 'USER' ">Vous êtes un simple User</p>
+  <p *ngSwitchCase=" 'ADMIN'">Bienvenue admin</p>
+  <p *ngSwitchCase="'SUPERHERO'">Qu'est-ce qu'on ferait sans vous ?</p>
+  <p *ngSwitchDefault>Mais qui êtes vous ?</p>
+</ng-container>
+
+
+<h5>Compteur ( le retour )</h5>
+
+<app-counter *ngIf="afficherCompteur"></app-counter>
+
+<p>
+  <button (click)="displayCounter()">Afficher / Cacher le compteur</button>
+</p>
+
+
+<h4>Les listes</h4>
+
+<p>Voici mes livres :</p>
+
+<ul>
+  <li *ngFor="let l of livres" [title]="l"> {{ l }} </li>
+</ul>
+
+
+<ul>
+  <li *ngFor="let l of livres;
+    let isFirst = first;
+    let isLast = last;
+    let isOdd = odd;
+    let isEven = even;
+    let i = index;"
+    [class.first]="isFirst"
+    [ngClass]="{last: isLast, paire: isOdd}"
+  >
+     {{ l }}, à l'index {{i}}.
+     Est le premier ? {{isFirst}}.
+    Est le dernier ? {{ isLast }}.
+    Est paire ? {{isOdd}}
+    Est impaire ? {{isEven}}
+  </li>
+</ul>

@@ -1,0 +1,85 @@
+<h1>Présentation</h1>
+
+<app-counter></app-counter>
+
+<h2>Syntaxe de template</h2>
+
+<h3>Interpolation  : </h3>
+
+<p>Pour interpréter du JS à l'intérieur de balises
+  (Dans le contenu dans la balise ), on utiliser les balises moustaches.
+</p>
+<p>Balises moustaches : {{ '{' + '{ ici du JS }}' }}</p>
+<p> {{ '<' }}balise> Contenu {{'<' + '/'}}balise>  </p>
+<p>Attention, dans le HTML, pour échapper les {{ '>' }} et les accolades,
+  il faut les mettre entre balises moustaches, en tant que chaîne de caractères JS
+</p>
+
+<h3>Data Binding</h3>
+
+<p>On peut mettre n'importe quel attribut HTML entre crochets, pour lui demander d'interpréter du JS.</p>
+
+<div class="img-container">
+    <!-- Attribut HTML classique : string brute-->
+    <img src="/assets/images/galaxy-cat.jpg"
+    alt="texte alternatif brut" />
+
+    <img [src]="image.link" [alt]="image.text"/>
+</div>
+
+
+<h4>Classes</h4>
+<p class="classe1 classe2">Coucou</p>
+
+<!-- Data binding pour les classes : OK-->
+<p [class]="myClasse">Une super tâche</p>
+
+<!-- si la tâche est terminée : finished, sinon : todo
+-> Fonctionnel, mais pas le plus propre
+-->
+<p [class]="(task.isFinished)? 'finished' : 'todo'">{{ task.text }}</p>
+
+
+<!-- Pour mettre une classe en fonction d'une condition,
+Si la condition est vrai, on met la classe, sinon non
+[class.nom-de-classe]="condition"
+-->
+<!-- attribut binding-->
+<p [class.toto]="task.isFinished" >{{task.text}}</p>
+
+
+<!--
+  Attends du JS :
+  - Une string : pour interpréter une valeur JS
+  - Un tableau de string
+  - Un objet : propriété / clef -> nom de la classe, en valeur -> condition
+-->
+
+<p [ngClass]="myClasse">Encore un truc à faire</p>
+
+<p [ngClass]="[myClasse, 'autreClasse']">Encore un truc à faire</p>
+
+<p [ngClass]="{toto: !task.isFinished}">Encore un truc à faire</p>
+
+
+<h4>Style</h4>
+
+<!-- HTML classique-->
+<p style="color: blue">Mon paragraphe bleu</p>
+
+<!-- data binding -->
+<p [style]="myStyle">Mon paragraphe modifié dynamiquement</p>
+
+<!-- attribute binding-->
+<p [style.background]="color">Mon paragraphe stylisé en attribute binding</p>
+
+<!-- directive -->
+<p [ngStyle]="myStyle">Paragraphe directive 1</p>
+
+<p [ngStyle]="{'background-color': color, 'width.px': size }">Ng Style 2</p>
+
+
+<p>
+  <button (click)="changeSize(-100)">--</button>
+  <button (click)="changeSize(100)">++</button>
+</p>

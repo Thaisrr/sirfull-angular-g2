@@ -1,0 +1,7 @@
+<p>{{text}}</p>
+
+<div *ngIf="counter || counter === 0">
+  <p>Compteur : {{counter}}</p>
+  <button (click)="increment()">Increment counter</button>
+  <button (click)="addTen()">Ajouter 10</button>
+</div>

@@ -1,0 +1,29 @@
+<h1>Communication entre les composants</h1>
+
+
+<h2>Input :</h2>
+<!-- Pour gérer les données individuellement-->
+<app-enfant [text]="message"></app-enfant>
+<app-enfant [id]="25" [machin]="'coucou'"></app-enfant>
+<app-enfant [text]=" 'Coucou'"></app-enfant>
+
+
+<h2>Output</h2>
+
+<app-enfant [counter]="0"></app-enfant>
+<hr>
+<p>[Communication] count : {{count}}</p>
+<app-enfant
+[counter]="count"
+(increment_emitter)="increment()"
+(add_ten_emitter)="updateValue($event)"
+></app-enfant>
+<hr>
+
+
+<p>[Communication] count2 : {{count2}}</p>
+<app-enfant
+[counter]="count2"
+[text]="'counter 2' "
+(increment_emitter)="increment2()"></app-enfant>
+

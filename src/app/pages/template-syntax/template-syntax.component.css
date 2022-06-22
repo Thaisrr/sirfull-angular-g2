@@ -1,0 +1,16 @@
+.img-container {
+  text-align: center;
+}
+
+.img-container img{
+    width: 45% ;
+}
+
+
+.todo {
+  color: red;
+}
+
+.finished {
+  color: green;
+}
