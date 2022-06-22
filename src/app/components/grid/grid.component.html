@@ -1,0 +1,6 @@
+<div class="grid" *ngIf="list; else noList">
+  <app-item *ngFor="let item of list" [text]="item"></app-item>
+</div>
+<ng-template #noList>
+  <p>Pas d'élément à afficher</p>
+</ng-template>

@@ -1,0 +1,8 @@
+<div *ngIf="panier.length > 0; else empty">
+  <ul>
+    <li *ngFor="let product of panier">{{product}}</li>
+  </ul>
+</div>
+<ng-template #empty>
+  <p>Votre panier est vide :( </p>
+</ng-template>
